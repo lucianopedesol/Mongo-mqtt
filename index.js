@@ -52,18 +52,19 @@ async function sedToMongo(topic, value) {
 
 client.on('connect', function() {
 
-    client.subscribe('esp32/pi/FAESA/ss2h35/temperature', function(err) {
+    client.subscribe(`${process.env.CONNECTIONMQTT}/temperature`, function(err) {
 
     })
-    client.subscribe('esp32/pi/FAESA/ss2h35/humidity', function(err) {
+    client.subscribe(`${process.env.CONNECTIONMQTT}/humidity`, function(err) {
 
     })
-    client.subscribe('esp32/pi/FAESA/ss2h35/hic', function(err) {
+    client.subscribe(`${process.env.CONNECTIONMQTT}/hic`, function(err) {
 
     })
 })
 
 client.on('message', function(topic, message) {
+    console.log(`${process.env.CONNECTIONMQTT}/temperature`)
 
     if (topic == `${process.env.CONNECTIONMQTT}/temperature`) {
 
