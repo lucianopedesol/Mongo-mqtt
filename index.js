@@ -64,31 +64,21 @@ client.on('connect', function() {
 })
 
 client.on('message', function(topic, message) {
-    // message is Buffer
-    console.log("")
-    console.log("-------------")
-    console.log("topc: ", topic)
-    console.log("message", message.toString())
 
-
-    if (topic == "esp32/pi/FAESA/ss2h35/temperature") {
+    if (topic == `${process.env.CONNECTIONMQTT}/temperature`) {
 
         sedToMongo('temperature', message.toString())
 
-    } else if (topic == "esp32/pi/FAESA/ss2h35/humidity") {
+    } else if (topic == `${process.env.CONNECTIONMQTT}/humidity`) {
 
         sedToMongo('humidity', message.toString())
 
-    } else if (topic == "esp32/pi/FAESA/ss2h35/hic") {
+    } else if (topic == `${process.env.CONNECTIONMQTT}/hic`) {
 
         sedToMongo('hic', message.toString())
 
     } else {
-        console.log("default topic: ", topic)
-        console.log("default message: ", message)
+        sedToMongo('error', message.toString())
     }
-
-    console.log("-------------")
-    console.log("")
 
 })
