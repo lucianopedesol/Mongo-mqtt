@@ -3,7 +3,18 @@ var client = mqtt.connect('mqtt://test.mosquitto.org');
 var MongoClient = require('mongodb');
 var url = require('url');
 let cachedDb = null;
+
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+    res.send('ok');
+});
+
+app.listen(process.env.PORT || 5000)
+
 require('dotenv').config()
+
 
 async function connectToDatabase(uri) {
     debugger
