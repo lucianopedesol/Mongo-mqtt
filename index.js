@@ -61,6 +61,9 @@ client.on('connect', function() {
     client.subscribe(`${process.env.CONNECTIONMQTT}/hic`, function(err) {
 
     })
+    client.subscribe(`${process.env.CONNECTIONMQTT}/rain`, function(err) {
+
+    })
 })
 
 client.on('message', function(topic, message) {
@@ -75,6 +78,10 @@ client.on('message', function(topic, message) {
         sedToMongo('humidity', message.toString())
 
     } else if (topic == `${process.env.CONNECTIONMQTT}/hic`) {
+
+        sedToMongo('hic', message.toString())
+
+    } else if (topic == `${process.env.CONNECTIONMQTT}/rain`) {
 
         sedToMongo('hic', message.toString())
 
