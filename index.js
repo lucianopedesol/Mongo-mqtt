@@ -83,7 +83,7 @@ client.on('message', function(topic, message) {
 
     } else if (topic == `${process.env.CONNECTIONMQTT}/rain`) {
 
-        sedToMongo('hic', message.toString())
+        sedToMongo('rain', message.toString())
 
     } else {
         sedToMongo('error', message.toString())
